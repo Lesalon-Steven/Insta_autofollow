@@ -8,9 +8,9 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
 
 import time
 
-ACCOUNT_USERNAME = "the_nomad_traveller__"
-ACCOUNT_PASSWORD = "Travel123!"
-TARGET_ACCOUNT = "https://www.instagram.com/tembeakenyasafaris254/"
+ACCOUNT_USERNAME = "Your username here"
+ACCOUNT_PASSWORD = "Your password here"
+TARGET_ACCOUNT = "target account here"
 # Optional - Keep the browser open (helps diagnose issues if the script crashes)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -56,17 +56,17 @@ time.sleep(5)
 
 pop_up_div = driver.find_element(By.XPATH, '//div[@class="_aano"]')
 
-for i in range(10):
+for i in range(100):
     driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;", pop_up_div)
     time.sleep(2)
 
 all_buttons = driver.find_elements(By.CSS_SELECTOR, value='._aano button')
 
-# for button in all_buttons:
-#     try:
-#         button.click()
-#         time.sleep(1.1)
-#     # Clicking button for someone who is already being followed will trigger dialog to Unfollow/Cancel
-#     except ElementClickInterceptedException:
-#         cancel_button = driver.find_element(by=By.XPATH, value="//button[contains(text(), 'Cancel')]")
-#         cancel_button.click()
+for button in all_buttons:
+    try:
+        button.click()
+        time.sleep(1.1)
+    # Clicking button for someone who is already being followed will trigger dialog to Unfollow/Cancel
+    except ElementClickInterceptedException:
+        cancel_button = driver.find_element(by=By.XPATH, value="//button[contains(text(), 'Cancel')]")
+        cancel_button.click()
